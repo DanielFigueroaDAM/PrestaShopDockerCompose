@@ -1,13 +1,16 @@
 services:
   mysql:
     container_name: some-mysql
-    image: mysql
+    image: mysql:8.0
     restart: unless-stopped
     environment:
       MYSQL_ROOT_PASSWORD: admin
       MYSQL_DATABASE: prestashop
     networks:
       - prestashop_network
+    volumes:
+      - dbdata:/var/lib/mysql
+
   prestashop:
     container_name: prestashop
     image: prestashop/prestashop:latest
@@ -25,14 +28,15 @@ services:
       DB_PASSWD: admin
       PS_INSTALL_AUTO: 1
       PS_FOLDER_INSTALL: install
-      PS_FOLDER_ADMIN: admin4577
+      PS_FOLDER_ADMIN: admin123
       ADMIN_MAIL: danifv02@gmail.com
       ADMIN_PASSWD: "753684291"
+      PS_DOMAIN: localhost:8080
     volumes:
-      - dbdata:/var/www/html
-
+      - prestashop_data:/var/www/html
     networks:
       - prestashop_network
+
   phpmyadmin:
     image: phpmyadmin
     restart: always
@@ -49,4 +53,5 @@ networks:
   prestashop_network:
 
 volumes:
-   dbdata:
+  dbdata:
+  prestashop_data:
