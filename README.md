@@ -69,10 +69,14 @@ phpmyadmin:
     - prestashop_network
 ```
 
-## PrestaShop Funcionando
+### PrestaShop Funcionando
 
 ![imagen_mostrando_PrestaShop](image-3.png)
 
-## phpMyAdmin con Tablas de PrestaShop
+### phpMyAdmin con Tablas de PrestaShop
 
 ![imagen_mostrando_phpMyAdmin](image-4.png)
+
+## Añadido archivo .env
+
+![alt text](image-5.png)

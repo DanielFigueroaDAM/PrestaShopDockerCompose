@@ -4,8 +4,8 @@ services:
     image: mysql:8.0
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: admin
-      MYSQL_DATABASE: prestashop
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     networks:
       - prestashop_network
     volumes:
@@ -22,15 +22,15 @@ services:
     environment:
       PS_LANGUAGE: es
       PS_COUNTRY: es
-      DB_SERVER: some-mysql
-      DB_NAME: prestashop
-      DB_USER: root
-      DB_PASSWD: admin
+      DB_SERVER: ${DB_SERVER}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWD: ${DB_PASSWD}
       PS_INSTALL_AUTO: 1
       PS_FOLDER_INSTALL: install
-      PS_FOLDER_ADMIN: admin123
-      ADMIN_MAIL: danifv02@gmail.com
-      ADMIN_PASSWD: "753684291"
+      PS_FOLDER_ADMIN: ${PS_FOLDER_ADMIN}
+      ADMIN_MAIL: ${ADMIN_MAIL}
+      ADMIN_PASSWD: ${ADMIN_PASSWD}
       PS_DOMAIN: localhost:8080
     volumes:
       - prestashop_data:/var/www/html
@@ -43,9 +43,9 @@ services:
     ports:
       - 8081:80
     environment:
-      PMA_HOST: some-mysql
-      PMA_USER: root
-      PMA_PASSWORD: admin
+      PMA_HOST: ${DB_SERVER}
+      PMA_USER: ${DB_USER}
+      PMA_PASSWORD: ${DB_PASSWD}
     networks:
       - prestashop_network
 
